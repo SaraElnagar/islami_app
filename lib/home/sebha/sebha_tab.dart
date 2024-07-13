@@ -8,8 +8,12 @@ class SebhaTab extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         Center(
-          child: Image.asset(
-            "assets/images/sebha_logo.png",
+          child: Stack(
+            children: [
+              Image.asset(
+                "assets/images/sebha_logo.png",
+              ),
+            ],
           ),
         ),
         Text(
@@ -17,7 +21,6 @@ class SebhaTab extends StatelessWidget {
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         Container(
-            // margin: EdgeInsets.only(top: 35),
             padding: EdgeInsets.symmetric(
                 horizontal: MediaQuery.of(context).size.width * 0.05,
                 vertical: MediaQuery.of(context).size.height * 0.03),
@@ -29,7 +32,6 @@ class SebhaTab extends StatelessWidget {
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             )),
         Container(
-          // margin: EdgeInsets.only(top: 20),
           padding: EdgeInsets.symmetric(
               horizontal: MediaQuery.of(context).size.width * 0.02,
               vertical: MediaQuery.of(context).size.height * 0.01),
