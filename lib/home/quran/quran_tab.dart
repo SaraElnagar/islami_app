@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islami_app/app_colors.dart';
 import 'package:islami_app/home/quran/item_sura_name.dart';
+import 'package:islami_app/providers/app_config_provider.dart';
+import 'package:provider/provider.dart';
 
 class QuranTab extends StatelessWidget {
   List<String> name = [
@@ -122,29 +125,58 @@ class QuranTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
+
     return Column(
       children: [
         Expanded(flex: 1, child: Image.asset("assets/images/quran_logo.png")),
-        Divider(
-          color: AppColors.primaryLightColor,
-          thickness: 3,
-        ),
-        Text(
-          'Sura Name',
-          style: Theme.of(context).textTheme.bodyMedium,
-        ),
-        Divider(
-          color: AppColors.primaryLightColor,
-          thickness: 3,
-        ),
+        provider.appTheme == ThemeMode.light
+            ? Divider(
+                color: AppColors.primaryLightColor,
+                thickness: 3,
+              )
+            : Divider(
+                color: AppColors.yellowColor,
+                thickness: 3,
+              ),
+        provider.appTheme == ThemeMode.light
+            ? Text(
+                provider.appLanguage == "en"
+                    ? AppLocalizations.of(context)!.sura_name
+                    : AppLocalizations.of(context)!.sura_name,
+                style: Theme.of(context).textTheme.bodyMedium,
+              )
+            : Text(
+                provider.appLanguage == "en"
+                    ? AppLocalizations.of(context)!.sura_name
+                    : AppLocalizations.of(context)!.sura_name,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium
+                    ?.copyWith(color: AppColors.whiteColor),
+              ),
+        provider.appTheme == ThemeMode.light
+            ? Divider(
+                color: AppColors.primaryLightColor,
+                thickness: 3,
+              )
+            : Divider(
+                color: AppColors.yellowColor,
+                thickness: 3,
+              ),
         Expanded(
           flex: 2,
           child: ListView.separated(
             separatorBuilder: (context, index) {
-              return Divider(
-                color: AppColors.primaryLightColor,
-                thickness: 2,
-              );
+              return provider.appTheme == ThemeMode.light
+                  ? Divider(
+                      color: AppColors.primaryLightColor,
+                      thickness: 2,
+                    )
+                  : Divider(
+                      color: AppColors.yellowColor,
+                      thickness: 2,
+                    );
             },
             itemBuilder: (context, index) {
               return ItemSuraName(
