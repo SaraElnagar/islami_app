@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islami_app/home/hadeth/item_hadeth_name.dart';
+import 'package:islami_app/providers/app_config_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../app_colors.dart';
 
@@ -14,37 +17,70 @@ class _HadethTabState extends State<HadethTab> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     if (ahadethList.isEmpty) {
       loadHadethFile();
     }
     return Column(
       children: [
         Expanded(flex: 1, child: Image.asset("assets/images/hadeth_logo.png")),
-        Divider(
-          color: AppColors.primaryLightColor,
-          thickness: 3,
-        ),
-        Text(
-          'Hadeth Name',
-          style: Theme.of(context).textTheme.bodyMedium,
-        ),
-        Divider(
-          color: AppColors.primaryLightColor,
-          thickness: 3,
-        ),
+        provider.appTheme == ThemeMode.light
+            ? Divider(
+                color: AppColors.primaryLightColor,
+                thickness: 3,
+              )
+            : Divider(
+                color: AppColors.yellowColor,
+                thickness: 3,
+              ),
+        provider.appTheme == ThemeMode.light
+            ? Text(
+                provider.appLanguage == "en"
+                    ? AppLocalizations.of(context)!.hadeth_name
+                    : AppLocalizations.of(context)!.hadeth_name,
+                style: Theme.of(context).textTheme.bodyMedium,
+              )
+            : Text(
+                provider.appLanguage == "en"
+                    ? AppLocalizations.of(context)!.hadeth_name
+                    : AppLocalizations.of(context)!.hadeth_name,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium
+                    ?.copyWith(color: AppColors.whiteColor),
+              ),
+        provider.appTheme == ThemeMode.light
+            ? Divider(
+                color: AppColors.primaryLightColor,
+                thickness: 3,
+              )
+            : Divider(
+                color: AppColors.yellowColor,
+                thickness: 3,
+              ),
         Expanded(
           flex: 2,
           child: ahadethList.isEmpty
               ? Center(
-                  child: CircularProgressIndicator(
-                  color: AppColors.primaryLightColor,
-                ))
+                  child: provider.appTheme == ThemeMode.light
+                      ? CircularProgressIndicator(
+                          color: AppColors.primaryLightColor,
+                        )
+                      : CircularProgressIndicator(
+                          color: AppColors.yellowColor,
+                        ),
+                )
               : ListView.separated(
                   separatorBuilder: (context, index) {
-                    return Divider(
-                      color: AppColors.primaryLightColor,
-                      thickness: 2,
-                    );
+                    return provider.appTheme == ThemeMode.light
+                        ? Divider(
+                            color: AppColors.primaryLightColor,
+                            thickness: 2,
+                          )
+                        : Divider(
+                            color: AppColors.yellowColor,
+                            thickness: 2,
+                          );
                   },
                   itemBuilder: (context, index) {
                     return ItemHadethName(hadeth: ahadethList[index]);
