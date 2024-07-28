@@ -19,6 +19,8 @@ class MyThemeData {
       // showUnselectedLabels: true,
       // backgroundColor: AppColors.primaryLightColor,
     ),
+    bottomSheetTheme:
+        BottomSheetThemeData(backgroundColor: AppColors.beigeColor),
     textTheme: TextTheme(
       bodyLarge: TextStyle(
           fontSize: 30,
