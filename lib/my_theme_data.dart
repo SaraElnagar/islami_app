@@ -13,14 +13,14 @@ class MyThemeData {
         centerTitle: true,
         // foregroundColor: AppColors.blackColor,
         iconTheme: IconThemeData(color: AppColors.blackColor)),
+    bottomSheetTheme:
+        BottomSheetThemeData(backgroundColor: AppColors.primaryLightColor),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       selectedItemColor: AppColors.blackColor,
       unselectedItemColor: AppColors.whiteColor,
       // showUnselectedLabels: true,
       // backgroundColor: AppColors.primaryLightColor,
     ),
-    bottomSheetTheme:
-        BottomSheetThemeData(backgroundColor: AppColors.beigeColor),
     textTheme: TextTheme(
       bodyLarge: TextStyle(
           fontSize: 30,
@@ -50,6 +50,8 @@ class MyThemeData {
         centerTitle: true,
         // foregroundColor: AppColors.whiteColor,
         iconTheme: IconThemeData(color: AppColors.whiteColor)),
+    bottomSheetTheme:
+        BottomSheetThemeData(backgroundColor: AppColors.primaryDarkColor),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       selectedItemColor: AppColors.yellowColor,
       unselectedItemColor: AppColors.whiteColor,

@@ -6,7 +6,7 @@ class AppConfigProvider extends ChangeNotifier {
   ThemeMode appTheme = ThemeMode.light;
 
   AppConfigProvider() {
-    _loadPreferences();
+    loadPreferences();
   }
 
   void changeLanguage(String newLanguage) {
@@ -15,7 +15,7 @@ class AppConfigProvider extends ChangeNotifier {
     }
     appLanguage = newLanguage;
     notifyListeners();
-    _savePreferences();
+    savePreferences();
   }
 
   void changeTheme(ThemeMode newMode) {
@@ -24,21 +24,21 @@ class AppConfigProvider extends ChangeNotifier {
     }
     appTheme = newMode;
     notifyListeners();
-    _savePreferences();
+    savePreferences();
   }
 
-  Future<void> _loadPreferences() async {
+  Future<void> loadPreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    appLanguage = prefs.getString('appLanguage') ?? 'en';
-    appTheme = (prefs.getString('appTheme') ?? 'light') == 'light'
+    appLanguage = prefs.getString('appLanguage') ?? "en";
+    appTheme = (prefs.getString("appTheme") ?? "light") == "light"
         ? ThemeMode.light
         : ThemeMode.dark;
     notifyListeners();
   }
 
-  Future<void> _savePreferences() async {
+  Future<void> savePreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('appLanguage', appLanguage);
-    prefs.setString('appTheme', appTheme == ThemeMode.light ? 'light' : 'dark');
+    prefs.setString("appLanguage", appLanguage);
+    prefs.setString("appTheme", appTheme == ThemeMode.light ? "light" : "dark");
   }
 }
