@@ -3,7 +3,6 @@ import 'package:islami_app/app_colors.dart';
 import 'package:islami_app/home/hadeth/hadeth_tab.dart';
 import 'package:islami_app/home/hadeth/item_hadeth_details.dart';
 import 'package:provider/provider.dart';
-
 import '../../providers/app_config_provider.dart';
 
 class HadethDetailsScreen extends StatefulWidget {
